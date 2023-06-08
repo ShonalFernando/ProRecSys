@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "PDE8X1Y0P3eulf6UGMcmXjMw/Qx4+D+SNHimFra5PFY=",
-  "Source": "RecommendationServices",
-  "BasePath": "_content/RecommendationServices",
+  "Hash": "urPnr2NcaB0btaJuI2DtdeT+XBKQK8szdreKVTk8OUw=",
+  "Source": "AuthAPI",
+  "BasePath": "_content/AuthAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

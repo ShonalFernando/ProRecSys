@@ -970,9 +970,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\RecommendationServices.csproj",
-      "projectName": "RecommendationServices",
-      "projectPath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\RecommendationServices.csproj",
+      "projectUniqueName": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\AuthAPI.csproj",
+      "projectName": "AuthAPI",
+      "projectPath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\AuthAPI.csproj",
       "packagesPath": "C:\\Users\\Shonal Fernando\\.nuget\\packages\\",
       "outputPath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\obj\\",
       "projectStyle": "PackageReference",

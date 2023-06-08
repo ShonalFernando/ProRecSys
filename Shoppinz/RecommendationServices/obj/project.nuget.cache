@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WOZoHMCN8ZEKzMcpZ16ZBtESJR5O+/e2FSns8URefmuSRRYcDlVzcooZli4Uv/wzz9lvgpBmvPrPpN9NZj8Hpw==",
+  "dgSpecHash": "B89+/j2NzO/5v+ZvJvUxXC9Kw45tLv89L05sHtQhgq0eDUv/wggN1y+4JSk9+1pQO1f0SD+cIMkcs71CqL3AKQ==",
   "success": true,
-  "projectFilePath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\RecommendationServices.csproj",
+  "projectFilePath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationServices\\AuthAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Shonal Fernando\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
