@@ -1,0 +1,94 @@
+﻿{
+  "TrainingTime": 120,
+  "Scenario": "Classification",
+  "DataSource": {
+    "Type": "TabularFile",
+    "Version": 1,
+    "FilePath": "D:\\Source\\Repos\\ProRecSys\\Shoppinz\\RecommendationAPI\\TrainingDataset\\proretweets.csv",
+    "Delimiter": ",",
+    "DecimalMarker": ".",
+    "HasHeader": true,
+    "ColumnProperties": [
+      {
+        "ColumnName": "tweet_text",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "emotion_in_tweet_is_directed_at",
+        "ColumnPurpose": "Feature",
+        "ColumnDataFormat": "String",
+        "IsCategorical": false,
+        "Type": "Column",
+        "Version": 1
+      },
+      {
+        "ColumnName": "is_there_an_emotion_directed_at_a_brand_or_product",
+        "ColumnPurpose": "Label",
+        "ColumnDataFormat": "String",
+        "IsCategorical": true,
+        "Type": "Column",
+        "Version": 1
+      }
+    ]
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 0,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.62381454162276084,
+        "RuntimeInSeconds": 8.07800006866455
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastTreeOva",
+        "Score": 0.88830347734457327,
+        "RuntimeInSeconds": 21.566999435424805
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "FastForestOva",
+        "Score": 0.90410958904109584,
+        "RuntimeInSeconds": 27.791999816894531
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaLogisticRegressionOva",
+        "Score": 0.62381454162276084,
+        "RuntimeInSeconds": 14.258000373840332
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "LbfgsLogisticRegressionOva",
+        "Score": 0.91570073761854587,
+        "RuntimeInSeconds": 21.277999877929688
+      },
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "TrainerName": "SdcaMaximumEntropyMulti",
+        "Score": 0.62381454162276084,
+        "RuntimeInSeconds": 4.7729997634887695
+      }
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"tweet_text\"],\"Outputs\":[\"tweet_text\"]},{\"EstimatorType\":\"FeaturizeText\",\"Inputs\":[\"emotion_in_tweet_is_directed_at\"],\"Outputs\":[\"emotion_in_tweet_is_directed_at\"]},{\"EstimatorType\":\"Concatenate\",\"Inputs\":[\"tweet_text\",\"emotion_in_tweet_is_directed_at\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"is_there_an_emotion_directed_at_a_brand_or_product\"],\"Outputs\":[\"is_there_an_emotion_directed_at_a_brand_or_product\"]},{\"EstimatorType\":\"NormalizeMinMax\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"is_there_an_emotion_directed_at_a_brand_or_product\",\"FeatureColumnName\":\"Features\",\"L1Regularization\":\"1\",\"L2Regularization\":\"1\",\"EstimatorType\":\"LbfgsLogisticRegressionOva\",\"Inputs\":[\"is_there_an_emotion_directed_at_a_brand_or_product\"],\"Outputs\":[\"Features\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "MetricName": "MicroAccuracy"
+  },
+  "Type": "TrainingConfig",
+  "Version": 1
+}

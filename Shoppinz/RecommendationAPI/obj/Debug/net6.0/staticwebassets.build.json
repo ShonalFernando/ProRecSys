@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "jr7UN9pxlbDOyXu6ox1SE9Esaa2QNdhCfw9f63J2oiE=",
+  "Source": "RecommendationAPI",
+  "BasePath": "_content/RecommendationAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

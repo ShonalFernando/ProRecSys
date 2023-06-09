@@ -8,7 +8,6 @@ namespace AuthAPI.Model
         [BsonId]
         public string? _id { get; set; }
 
-
         public string Username { get; set; } = null!;
 
         public string Password { get; set; } = null!;
