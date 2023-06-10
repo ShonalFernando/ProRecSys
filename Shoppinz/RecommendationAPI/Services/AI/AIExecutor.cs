@@ -9,7 +9,7 @@ namespace RecommendationAPI.AI
             //Load sample data
             var sampleData = new SAnalyzer.ModelInput()
             {
-                Tweet_text = @".@wesley83 I have a 3G iPhone. After 3 hrs tweeting at #RISE_Austin, it was dead!  I need to upgrade. Plugin stations at #SXSW.",
+                Tweet_text = @"I Like Iphones.",
                 Emotion_in_tweet_is_directed_at = @"iPhone",
             };
 
