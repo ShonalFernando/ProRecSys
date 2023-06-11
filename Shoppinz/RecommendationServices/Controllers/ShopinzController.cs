@@ -28,8 +28,12 @@ namespace AuthAPI.Controllers
 
             if (uacc is null)
             {
-                return NotFound();
+                return Ok(new UserAccount() { Username = "NOUSER404", Password = "NOPASSWORD404" });
+                //Override the return below
+                //return NotFound();
             }
+            //Append
+            uacc.Password = EncryptionServices.EncryptPass(uacc.Password,2);
 
             return uacc;
         }

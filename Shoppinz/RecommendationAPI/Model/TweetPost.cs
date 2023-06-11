@@ -12,6 +12,7 @@ namespace RecommendationAPI.Model
         public bool isPostFiltered { get ; set ; }
         public bool isSentimentAnalyzed { get ; set ; }
         public bool isKeywordsExtracted { get ; set; }
+        public string TargetProduct { get; set; }
 
         public TweetPost(string postID, string username, string emotion, bool isPostFiltered, bool isSentimentAnalyzed, string[] keywords, bool isKeywordsExtracted)
         {

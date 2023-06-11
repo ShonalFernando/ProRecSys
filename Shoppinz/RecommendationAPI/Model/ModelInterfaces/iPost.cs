@@ -6,6 +6,7 @@
         string Username { get; set; }
         string Emotion { get; set; }
         string[] Keywords { get; set; }
+        string TargetProduct { get; set; }
 
         bool isKeywordsExtracted { get; set; }
         bool isPostFiltered { get; set; }
