@@ -2,9 +2,9 @@
 
 namespace RecommendationAPI.AI
 {
-    public class AIExecutor
+    public class MLExecutor
     {
-        public string GetSentiment()
+        public string GetSentiment(string tweet, string identifiedProduct)
         {
             //Load sample data
             var sampleData = new SAnalyzer.ModelInput()

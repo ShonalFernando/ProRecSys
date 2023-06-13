@@ -13,9 +13,9 @@ namespace RecommendationAPI.Controllers
         [HttpGet("{Username}")]
         public async Task<ActionResult<Catalogue>> Get(string Username)
         {
-            AIExecutor aiez = new AIExecutor();
+            MLExecutor aiez = new MLExecutor();
 
-            return Ok(aiez.GetSentiment());
+            return Ok(aiez.GetSentiment("",""));
         }
 
     }
