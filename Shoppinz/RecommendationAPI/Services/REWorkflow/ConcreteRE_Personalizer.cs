@@ -1,19 +1,21 @@
-﻿namespace RecommendationAPI.Services.REWorkflow
+﻿using RecommendationAPI.Model;
+
+namespace RecommendationAPI.Services.REWorkflow
 {
-    public class ConcreteRE_Personalizer
+    public class ConcreteRE_Personalizer : iREHandler
     {
         private iREHandler _nextHandler;
 
-        public void HandleRequest(RERequest request)
+        public TweetPost HandleRequest(RERequest request, TweetPost tpost)
         {
-            if (request.Content == "C")
+            if (request.Content == "PZ")
             {
                 Console.WriteLine("Current Request");
             }
             else if (_nextHandler != null)
             {
                 Console.WriteLine($"ConcreteHandlerC: Passing the request '{request.Content}' to the next handler.");
-                _nextHandler.HandleRequest(request);
+                _nextHandler.HandleRequest(request, tpost);
             }
             else
             {

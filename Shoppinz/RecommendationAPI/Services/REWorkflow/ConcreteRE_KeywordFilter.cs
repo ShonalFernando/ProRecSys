@@ -1,25 +1,29 @@
 ﻿using RecommendationAPI.Model;
+using RecommendationAPI.ServiceEnums;
 
 namespace RecommendationAPI.Services.REWorkflow
 {
-    public class ConcreteRE_SentimentAnalysis : iREHandler
+    public class ConcreteRE_KeywordFilter : iREHandler
     {
-        private iREHandler _nextHandler;
+        private iREHandler? _nextHandler;
 
         public TweetPost HandleRequest(RERequest request, TweetPost tpost)
         {
-            if (request.Content == "SA")
+            if(request.Content == "KWF")
             {
-                Console.WriteLine("Current Request B");
+
+                
+                return tpost;
             }
             else if (_nextHandler != null)
             {
-                Console.WriteLine($"ConcreteHandlerB: Passing the request '{request.Content}' to the next handler.");
                 _nextHandler.HandleRequest(request, tpost);
+                return tpost;
             }
             else
             {
-                Console.WriteLine($"ConcreteHandlerB: End of the chain. Request '{request.Content}' cannot be handled.");
+                Console.WriteLine($"ConcreteHandlerA: End of the chain. Request '{request.Content}' cannot be handled.");
+                return tpost;
             }
         }
 
@@ -29,4 +33,3 @@ namespace RecommendationAPI.Services.REWorkflow
         }
     }
 }
-

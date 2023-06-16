@@ -4,6 +4,7 @@
     {
         string PostID { get; set; }
         string Username { get; set; }
+        string Tweet { get; set; }
         string Emotion { get; set; }
         string[] Keywords { get; set; }
         string TargetProduct { get; set; }
