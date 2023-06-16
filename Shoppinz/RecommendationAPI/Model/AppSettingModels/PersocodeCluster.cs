@@ -7,6 +7,6 @@
 
         public string DatabaseName { get; set; } = "Shoppinz"; //null!;
 
-        public string ShoppinzUsersCollectionName { get; set; } = "Persocode"; //null!;
+        public string ShoppinzpersoCollectionName { get; set; } = "Persocode"; //null!;
     }
 }

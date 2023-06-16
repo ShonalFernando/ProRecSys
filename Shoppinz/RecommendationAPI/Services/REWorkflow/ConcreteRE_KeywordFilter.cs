@@ -7,23 +7,19 @@ namespace RecommendationAPI.Services.REWorkflow
     {
         private iREHandler? _nextHandler;
 
-        public TweetPost HandleRequest(RERequest request, TweetPost tpost)
+        public void HandleRequest(RERequest request, TweetPost tpost)
         {
             if(request.Content == "KWF")
             {
-
-                
-                return tpost;
+                throw new NotImplementedException();
             }
             else if (_nextHandler != null)
             {
                 _nextHandler.HandleRequest(request, tpost);
-                return tpost;
             }
             else
             {
                 Console.WriteLine($"ConcreteHandlerA: End of the chain. Request '{request.Content}' cannot be handled.");
-                return tpost;
             }
         }
 

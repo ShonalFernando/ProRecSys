@@ -6,7 +6,7 @@ namespace RecommendationAPI.Services.REWorkflow
     {
         private iREHandler _nextHandler;
 
-        public TweetPost HandleRequest(RERequest request, TweetPost tpost)
+        public void HandleRequest(RERequest request, TweetPost tpost)
         {
             if (request.Content == "PZ")
             {

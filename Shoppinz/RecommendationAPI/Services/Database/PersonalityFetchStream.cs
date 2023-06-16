@@ -9,23 +9,23 @@ namespace RecommendationAPI.Services.Database
     {
         private readonly IMongoCollection<Persocode> _persocodeCollection;
 
-        public PersonalityFetchStream(IOptions<ProductCluster> productcluster)
+        public PersonalityFetchStream(IOptions<PersocodeCluster> persocodecluster)
         {
             var mongoClient = new MongoClient(
-                productcluster.Value.ConnectionString);
+                persocodecluster.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                productcluster.Value.DatabaseName);
+                persocodecluster.Value.DatabaseName);
 
             _persocodeCollection = mongoDatabase.GetCollection<Persocode>(
-                productcluster.Value.ShoppinzUsersCollectionName);
+                persocodecluster.Value.ShoppinzpersoCollectionName);
         }
 
         public async Task<List<Persocode>> GetAsync() =>
             await _persocodeCollection.Find(_ => true).ToListAsync();
 
-        public async Task<Persocode?> GetAsync(string productname) =>
-            await _persocodeCollection.Find(x => x._id == productname).FirstOrDefaultAsync();
+        public async Task<Persocode?> GetAsync(string id) =>
+            await _persocodeCollection.Find(x => x._id == id).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Persocode newcode) =>
             await _persocodeCollection.InsertOneAsync(newcode);

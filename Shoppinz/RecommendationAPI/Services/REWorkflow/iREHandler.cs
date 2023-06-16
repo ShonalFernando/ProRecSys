@@ -6,6 +6,6 @@ namespace RecommendationAPI.Services.REWorkflow
     public interface iREHandler
     {
         void SetNext(iREHandler handler);
-        TweetPost HandleRequest(RERequest request,TweetPost tpost);
+        void HandleRequest(RERequest request,TweetPost tpost);
     }
 }
