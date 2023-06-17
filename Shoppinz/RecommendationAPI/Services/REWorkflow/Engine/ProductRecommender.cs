@@ -10,7 +10,7 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
         private readonly ProductFetchStream _pfstream = null!;
         public Dictionary<string, int> MatchProducts { get; set; } = null!;
 
-        public async Task<Product> GetProduct(string OriginalText)
+        public Product GetProduct(string OriginalText)
         {
             //Get Original Text and Remove Articales and Unneccessary words and Symbols
 
@@ -21,7 +21,7 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
             TweetedWords = OriginalText.Split(' ');
 
             //Get the Database list of products and keywords
-            var products = await _pfstream.GetAsync();
+            var products = _pfstream.GetProduct();
 
             //Run loop through Words
             foreach (var word in TweetedWords)
@@ -60,7 +60,7 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
             }
 
             //Now get that product
-            var rProduct = await _pfstream.GetAsync("_mpMax");
+            var rProduct =  _pfstream.GetProduct("_mpMax");
 
             //If the product is null send a message
             if(rProduct == null)

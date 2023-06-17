@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RecommendationAPI.AI;
 using RecommendationAPI.Model;
+using RecommendationAPI.Services.REWorkflow.Engine;
 
 namespace RecommendationAPI.Controllers
 {
@@ -13,7 +13,7 @@ namespace RecommendationAPI.Controllers
         [HttpGet("{Username}")]
         public async Task<ActionResult<Catalogue>> Get(string Username)
         {
-            MLExecutor aiez = new MLExecutor();
+            SentimentAnalyzer aiez = new SentimentAnalyzer();
 
             return Ok(aiez.GetSentiment("",""));
         }

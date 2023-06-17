@@ -10,22 +10,18 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
         //Blocked Keywords
 
         //Get the Personal preferences of the user
-        public async Task<Product> GetPreferences(string persocode)
+        public Persocode GetPreferences(string persocode)
         {
-            var Perso = await _pfstream.GetAsync(persocode);
-            if(Perso!=null)
+            var Perso =  _pfstream.GetPerso(persocode);
+            if (Perso != null)
             {
-                //Get Product Name from preffered
-                string[]? _productpreffered = Perso.PreferedProducts;
+                //Return the Personal Preferences
+                return Perso;
 
-                //Get Blocked Keywords
-                string[]? _blockedkeywords = Perso.BlockedKeywords;
-
-                return new Product();
             }
             else
             {
-                return new Product();
+                return new Persocode();
             }
         }
     }

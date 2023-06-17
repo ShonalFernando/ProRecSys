@@ -21,19 +21,19 @@ namespace RecommendationAPI.Services.Database
                 productcluster.Value.ShoppinzUsersCollectionName);
         }
 
-        public async Task<List<Product>> GetAsync() =>
-            await _ProductCollection.Find(_ => true).ToListAsync();
+        public List<Product> GetProduct() =>
+             _ProductCollection.Find(_ => true).ToList();
 
-        public async Task<Product?> GetAsync(string productname) =>
-            await _ProductCollection.Find(x => x.ProductName == productname).FirstOrDefaultAsync();
+        public Product? GetProduct(string productname) =>
+             _ProductCollection.Find(x => x.ProductName == productname).FirstOrDefault();
 
-        public async Task CreateAsync(Product newBook) =>
-            await _ProductCollection.InsertOneAsync(newBook);
+        public void Create(Product newBook) =>
+             _ProductCollection.InsertOne(newBook);
 
-        public async Task UpdateAsync(string productname, Product updatedproduct) =>
-            await _ProductCollection.ReplaceOneAsync(x => x.ProductName == productname, updatedproduct);
+        public void UpdateAsync(string productname, Product updatedproduct) =>
+             _ProductCollection.ReplaceOne(x => x.ProductName == productname, updatedproduct);
 
-        public async Task RemoveAsync(string productname) =>
-            await _ProductCollection.DeleteOneAsync(x => x.ProductName == productname);
+        public void RemoveAsync(string productname) =>
+             _ProductCollection.DeleteOne(x => x.ProductName == productname);
     }
 }

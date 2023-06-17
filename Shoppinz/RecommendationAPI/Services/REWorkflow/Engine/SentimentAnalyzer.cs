@@ -1,8 +1,8 @@
 ﻿using AuthAPI;
 
-namespace RecommendationAPI.AI
+namespace RecommendationAPI.Services.REWorkflow.Engine
 {
-    public class MLExecutor
+    public class SentimentAnalyzer
     {
         public string GetSentiment(string tweet, string identifiedProduct)
         {

@@ -21,19 +21,19 @@ namespace RecommendationAPI.Services.Database
                 persocodecluster.Value.ShoppinzpersoCollectionName);
         }
 
-        public async Task<List<Persocode>> GetAsync() =>
-            await _persocodeCollection.Find(_ => true).ToListAsync();
+        public  List<Persocode> GetPerso() =>
+             _persocodeCollection.Find(_ => true).ToList();
 
-        public async Task<Persocode?> GetAsync(string id) =>
-            await _persocodeCollection.Find(x => x._id == id).FirstOrDefaultAsync();
+        public  Persocode? GetPerso(string id) =>
+             _persocodeCollection.Find(x => x._id == id).FirstOrDefault();
 
-        public async Task CreateAsync(Persocode newcode) =>
-            await _persocodeCollection.InsertOneAsync(newcode);
+        public  void Create(Persocode newcode) =>
+             _persocodeCollection.InsertOne(newcode);
 
-        public async Task UpdateAsync(string id, Persocode updatedproduct) =>
-            await _persocodeCollection.ReplaceOneAsync(x => x._id == id, updatedproduct);
+        public void Update(string id, Persocode updatedproduct) =>
+             _persocodeCollection.ReplaceOne(x => x._id == id, updatedproduct);
 
-        public async Task RemoveAsync(string id) => 
-            await _persocodeCollection.DeleteOneAsync(x => x._id == id);
+        public void Remove(string id) => 
+             _persocodeCollection.DeleteOne(x => x._id == id);
     }
 }
