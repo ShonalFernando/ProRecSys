@@ -10,24 +10,48 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
         private readonly ProductFetchStream _pfstream = null!;
         public Dictionary<string, int> MatchProducts { get; set; } = null!;
 
-        public Product GetProduct(string OriginalText)
+        public Tuple<List<Product>,bool> GetProduct(string TweetText, Persocode persocode)
         {
             //Get Original Text and Remove Articales and Unneccessary words and Symbols
 
-            //String is splitted into words
-            string[] TweetedWords;
+            //String (Tweet Post) needs to be splitted into seperate words and store it in a list
+            //We chould create a List of Strings(i.e., words)
+            List<string> TweetedWords;
+
+            //Create a Boolean Variable to denote whether the return list of products contains a AI recommended Product
+            bool isContainsRecommendation = false;
+
+            //Create a list of products to return
+            //The list contains [0] - AI recommended Product [1], [2], ... - Prefered Product
+            List<Product> ReturningProducts = new List<Product>();
 
             //Split by space
-            TweetedWords = OriginalText.Split(' ');
+            TweetedWords = TweetText.Split(' ').ToList();
 
             //Get the Database list of products and keywords
-            var products = _pfstream.GetProduct();
+            var _products = _pfstream.GetProduct();
 
-            //Run loop through Words
+            //A: Run loop through Words in the tweet
             foreach (var word in TweetedWords)
             {
-                foreach (var productkw in products)
+                //B: Check whether the user has no blocked words
+                if (persocode.BlockedKeywords != null)
                 {
+                    //C: If yes, Now we have to eliminate blocked Keywords taken from the user preferences
+                    foreach (var BlockedWord in persocode.BlockedKeywords)
+                    {
+                        //Creating a list is easy to work with, i.e., collections
+                        //D: Now check each word is matching
+                        if( BlockedWord == word)
+                        {
+                            TweetedWords.Remove(word);
+                        }
+                    }
+                }
+                //Run Through Each Product in the Product List
+                foreach (var productkw in _products)
+                {
+                    //Check if a word matches any of the product keywords
                     if (word == productkw.Keywords0 ||
                         word == productkw.Keywords1 ||
                         word == productkw.Keywords2 ||
@@ -47,29 +71,45 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
                 }
             }
 
-            //Check what product has the most weight
-            string _mpMax = "WAITING";
-            try
-            {
-                _mpMax = MatchProducts.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-            }
-            catch (Exception)
-            {
+            //We need to add the prefered products to the list
+            //Before that we need to know the maximum weight of the matched products
+            var MaxValue = MatchProducts.Values.Max(); // 
 
-                _mpMax = "NODATA";
-            }
+            //Check what product has the most weight
+            string _mpMax = "";
+             _mpMax = MatchProducts.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
 
             //Now get that product
-            var rProduct =  _pfstream.GetProduct("_mpMax");
+            Product? rProduct = new Product();
 
-            //If the product is null send a message
-            if(rProduct == null)
+            if (string.IsNullOrEmpty(_mpMax))
             {
-                rProduct = new Product() { ProductName= "NOPRODUCT"};
+                //If the string is not null get the product
+                rProduct = _pfstream.GetProduct(_mpMax);
             }
 
-            //Return the product
-            return rProduct;
+            if(rProduct != null)
+            {
+                //If the Product is not null add it
+                ReturningProducts.Add(rProduct);
+                isContainsRecommendation = true;
+            }
+
+            //Now the rest of the list is populated by user product preferences
+            if (persocode.PreferedProducts != null)
+            {
+                foreach (var _preferedproduct in persocode.PreferedProducts)
+                {
+                    rProduct = _pfstream.GetProduct(_preferedproduct);
+                    if (rProduct != null)
+                    {
+                        ReturningProducts.Add(rProduct); 
+                    }
+                } 
+            }
+
+            //Return the product list with #1 index containing AI (not ML) recommendation and rest is preferences
+            return Tuple.Create(ReturningProducts, isContainsRecommendation);
         }
     }
 }
