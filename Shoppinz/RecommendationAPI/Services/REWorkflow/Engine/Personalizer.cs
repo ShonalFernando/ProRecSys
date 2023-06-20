@@ -13,7 +13,7 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
         //Get the Personal preferences of the user
         public Persocode GetPreferences(string persocode)
         {
-            var Perso =  _pfstream.GetPerso("XXABC");
+            var Perso =  _pfstream.GetPerso(persocode);
             if (Perso != null)
             {
                 //Return the Personal Preferences
