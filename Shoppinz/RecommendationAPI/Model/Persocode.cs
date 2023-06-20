@@ -6,6 +6,7 @@ namespace RecommendationAPI.Model
     {
         [BsonId]
         public string _id { get; set; } = null!;
+        public string PCode { get; set; } = null!;
 
         public string[]?  BlockedKeywords { get; set; }
         public string[]? PreferedProducts { get; set; }

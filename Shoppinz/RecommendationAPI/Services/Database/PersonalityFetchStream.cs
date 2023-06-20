@@ -8,32 +8,38 @@ namespace RecommendationAPI.Services.Database
     public class PersonalityFetchStream
     {
         private readonly IMongoCollection<Persocode> _persocodeCollection;
+        public string ConnectionString { get; set; } = "mongodb://localhost:27017"; //null!; 
 
-        public PersonalityFetchStream(IOptions<PersocodeCluster> persocodecluster)
+        public string DatabaseName { get; set; } = "Shoppinz"; //null!;
+
+        public string ShoppinzpersoCollectionName { get; set; } = "Persocode"; //null!;
+
+
+        public PersonalityFetchStream(/*IOptions<PersocodeCluster> persocodecluster*/)
         {
             var mongoClient = new MongoClient(
-                persocodecluster.Value.ConnectionString);
+                /*persocodecluster.Value.*/ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                persocodecluster.Value.DatabaseName);
+                /*persocodecluster.Value.*/DatabaseName);
 
             _persocodeCollection = mongoDatabase.GetCollection<Persocode>(
-                persocodecluster.Value.ShoppinzpersoCollectionName);
+                /*persocodecluster.Value.*/ShoppinzpersoCollectionName);
         }
 
         public  List<Persocode> GetPerso() =>
              _persocodeCollection.Find(_ => true).ToList();
 
-        public  Persocode? GetPerso(string id) =>
-             _persocodeCollection.Find(x => x._id == id).FirstOrDefault();
+        public  Persocode? GetPerso(string Pcode) =>
+             _persocodeCollection.Find(x => x.PCode == Pcode).FirstOrDefault();
 
         public  void Create(Persocode newcode) =>
              _persocodeCollection.InsertOne(newcode);
 
-        public void Update(string id, Persocode updatedproduct) =>
-             _persocodeCollection.ReplaceOne(x => x._id == id, updatedproduct);
+        public void Update(string Pcode, Persocode updatedproduct) =>
+             _persocodeCollection.ReplaceOne(x => x.PCode == Pcode, updatedproduct);
 
-        public void Remove(string id) => 
-             _persocodeCollection.DeleteOne(x => x._id == id);
+        public void Remove(string Pcode) => 
+             _persocodeCollection.DeleteOne(x => x.PCode == Pcode);
     }
 }

@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Components;
 using RecommendationAPI.Model;
+using RecommendationAPI.Model.AppSettingModels;
+using RecommendationAPI.Services.Database;
 using RecommendationAPI.Services.REWorkflow.Engine;
 
 namespace RecommendationAPI.Services.REWorkflow
 {
     public class OverrideWorkflow
     {
+        ProductFetchStream pfs = new ProductFetchStream();
         SentimentAnalyzer _SentimentAnalyzer = new SentimentAnalyzer();
         ProductRecommender _productRecommender = new ProductRecommender();
         Personalizer _Personalizer = new Personalizer();
+        PersocodeCluster pfss = new PersocodeCluster();
         Mixer _Mixer = new Mixer();
 
         Product product = new Product();
@@ -33,7 +37,10 @@ namespace RecommendationAPI.Services.REWorkflow
             }
             else
             {
-                return new Product();
+                var plist = pfs.GetProduct();
+                Random random = new Random();
+
+                return plist[random.Next(0, plist.Count)];
             }
         }
     }

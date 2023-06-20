@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RecommendationAPI.Model;
+using RecommendationAPI.Services;
+using RecommendationAPI.Services.Database;
 using RecommendationAPI.Services.REWorkflow;
 using RecommendationAPI.Services.REWorkflow.Engine;
 
@@ -16,10 +18,22 @@ namespace RecommendationAPI.Controllers
         public async Task<ActionResult<Catalogue>> Get(string Username)
         {
             //SentimentAnalyzer aiez = new SentimentAnalyzer();
+            //Catalogue cat = new Catalogue() { ProductName = "Test", ProductRemarks = "Good" };
 
-            owf.RecommendationWF("","")
+            UserService userservice = new UserService();
+            TweetExtractor twext = new TweetExtractor();
 
-            return Ok(aiez.GetSentiment("",""));
+            var _profile = userservice.GetAsync(Username);
+            string _uname = "";
+            string CTweets = "";
+            string pcode = "";
+            if (_profile != null )
+            {
+                pcode = _profile.PersonalCode;
+                _uname = _profile.Username;
+                CTweets =  twext.twext(_uname);
+            }
+            return Ok(owf.RecommendationWF(CTweets, pcode));
         }
 
     }

@@ -9,16 +9,22 @@ namespace RecommendationAPI.Services.Database
     {
         private readonly IMongoCollection<Product> _ProductCollection;
 
-        public ProductFetchStream(IOptions<ProductCluster> productcluster)
+        public string ConnectionString { get; set; } = "mongodb://localhost:27017"; //null!; 
+
+        public string DatabaseName { get; set; } = "Shoppinz"; //null!;
+
+        public string ShoppinzUsersCollectionName { get; set; } = "Products"; //null!;
+
+        public ProductFetchStream(/*IOptions<ProductCluster> productcluster*/)
         {
             var mongoClient = new MongoClient(
-                productcluster.Value.ConnectionString);
+                /*productcluster.Value.*/ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(
-                productcluster.Value.DatabaseName);
+                /*productcluster.Value.*/DatabaseName);
 
             _ProductCollection = mongoDatabase.GetCollection<Product>(
-                productcluster.Value.ShoppinzUsersCollectionName);
+                /*productcluster.Value.*/ShoppinzUsersCollectionName);
         }
 
         public List<Product> GetProduct() =>
