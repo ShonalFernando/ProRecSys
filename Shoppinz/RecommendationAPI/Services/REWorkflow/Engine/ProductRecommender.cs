@@ -86,7 +86,7 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
             //Now get that product
             Product? rProduct = new Product();
 
-            if (string.IsNullOrEmpty(_mpMax))
+            if (!string.IsNullOrEmpty(_mpMax))
             {
                 //If the string is not null get the product
                 rProduct = _pfstream.GetProduct(_mpMax);
