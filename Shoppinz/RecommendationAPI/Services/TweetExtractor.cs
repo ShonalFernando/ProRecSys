@@ -11,6 +11,8 @@ namespace RecommendationAPI.Services
 
         public string twext (string Username)
         {
+            string Tweets = "";
+
             TwitterService twitterService = new TwitterService(_consumerKey, _consumerSecret);
             twitterService.AuthenticateWith(_accessToken, _accessTokenSecret);
 
@@ -20,35 +22,43 @@ namespace RecommendationAPI.Services
                 SinceId = 0,
                 Count = 5
             };
-            var currentTweets = twitterService.ListTweetsOnUserTimeline(options);
-
-            int tweetcount = 1;
-
-            string Tweets = "";
-            //Resulttype can be TwitterSearchResultType.Popular or TwitterSearchResultType.Mixed or TwitterSearchResultType.Recent  
-            List<TwitterStatus> resultList = new List<TwitterStatus>(currentTweets);
-            foreach (var tweet in currentTweets)
+            try
             {
-                try
+                var currentTweets = twitterService.ListTweetsOnUserTimeline(options);
+
+                int tweetcount = 1;
+
+                
+                //Resulttype can be TwitterSearchResultType.Popular or TwitterSearchResultType.Mixed or TwitterSearchResultType.Recent  
+                List<TwitterStatus> resultList = new List<TwitterStatus>(currentTweets);
+                foreach (var tweet in currentTweets.ToList())
                 {
-                    //tweet.User.ScreenName;  
-                    //tweet.User.Name;   
-                    //tweet.Text; // Tweet text  
-                    //tweet.RetweetCount; //No of retweet on twitter  
-                    //tweet.User.FavouritesCount; //No of Fav mark on twitter  
-                    //tweet.User.ProfileImageUrl; //Profile Image of Tweet  
-                    //tweet.CreatedDate; //For Tweet posted time  
-                    //"https://twitter.com/intent/retweet?tweet_id=" + tweet.Id;  //For Retweet  
-                    //"https://twitter.com/intent/tweet?in_reply_to=" + tweet.Id; //For Reply  
-                    //"https://twitter.com/intent/favorite?tweet_id=" + tweet.Id; //For Favorite  
+                    try
+                    {
+                        //tweet.User.ScreenName;  
+                        //tweet.User.Name;   
+                        //tweet.Text; // Tweet text  
+                        //tweet.RetweetCount; //No of retweet on twitter  
+                        //tweet.User.FavouritesCount; //No of Fav mark on twitter  
+                        //tweet.User.ProfileImageUrl; //Profile Image of Tweet  
+                        //tweet.CreatedDate; //For Tweet posted time  
+                        //"https://twitter.com/intent/retweet?tweet_id=" + tweet.Id;  //For Retweet  
+                        //"https://twitter.com/intent/tweet?in_reply_to=" + tweet.Id; //For Reply  
+                        //"https://twitter.com/intent/favorite?tweet_id=" + tweet.Id; //For Favorite  
 
-                    //Above are the things we can also get using TweetSharp.  
+                        //Above are the things we can also get using TweetSharp.  
 
-                    Tweets += tweet.Text;
-                     tweetcount++;
+                        Tweets += tweet.Text;
+                        tweetcount++;
+                    }
+                    catch { }
                 }
-                catch { }
             }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+
             return Tweets;
         }
     }

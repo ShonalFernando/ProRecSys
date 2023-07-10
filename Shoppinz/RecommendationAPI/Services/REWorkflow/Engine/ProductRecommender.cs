@@ -112,6 +112,20 @@ namespace RecommendationAPI.Services.REWorkflow.Engine
                 } 
             }
 
+            //If the entire list is null add some random products
+            else
+            {
+                for(int i = 0; i < 6; i ++)
+                {
+                    var plist = _pfstream.GetProduct();
+                    if (plist != null)
+                    {
+                        Random random = new Random();
+                        ReturningProducts.Add(plist[random.Next(0, plist.Count())]);
+                    }
+                }
+            }
+
             //Return the product list with #1 index containing AI (not ML) recommendation and rest is preferences
             return Tuple.Create(ReturningProducts, isContainsRecommendation);
         }

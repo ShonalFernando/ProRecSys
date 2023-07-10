@@ -21,18 +21,26 @@ namespace RecommendationAPI.Services.REWorkflow
         {
             var pref = _Personalizer.GetPreferences(persocode);
             var rec = _productRecommender.GetProduct(tweet, pref);
-            if (rec != null && rec.Item2)
+            if (rec != null && rec.Item1[0].ProductName != "")
             {
-                var sentiment = _SentimentAnalyzer.GetSentiment(tweet, rec.Item1[0].ProductName);
-                if(sentiment == "Positive")
+                if (rec.Item2)
                 {
-                    product = rec.Item1[0];
+                    var sentiment = _SentimentAnalyzer.GetSentiment(tweet, rec.Item1[0].ProductName);
+                    if (sentiment == "Positive")
+                    {
+                        product = rec.Item1[0];
+                    }
+                    else
+                    {
+                        product = _Mixer.GetProRec(rec);
+                    } 
+
                 }
                 else
                 {
-                    product = _Mixer.GetProRec(rec);
+                    Random random = new Random();
+                    product = rec.Item1[random.Next(1, rec.Item1.Count())];
                 }
-
                 return product;
             }
             else

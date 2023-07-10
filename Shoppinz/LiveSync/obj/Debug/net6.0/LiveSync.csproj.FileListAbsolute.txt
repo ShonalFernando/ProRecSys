@@ -1,0 +1,15 @@
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\bin\Debug\net6.0\LiveSync.exe
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\bin\Debug\net6.0\LiveSync.deps.json
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\bin\Debug\net6.0\LiveSync.runtimeconfig.json
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\bin\Debug\net6.0\LiveSync.dll
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\bin\Debug\net6.0\LiveSync.pdb
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.csproj.AssemblyReference.cache
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.GeneratedMSBuildEditorConfig.editorconfig
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.AssemblyInfoInputs.cache
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.AssemblyInfo.cs
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.csproj.CoreCompileInputs.cache
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.dll
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\refint\LiveSync.dll
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.pdb
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\LiveSync.genruntimeconfig.cache
+D:\Source\Repos\ProRecSys\Shoppinz\LiveSync\obj\Debug\net6.0\ref\LiveSync.dll

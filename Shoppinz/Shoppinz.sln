@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthAPI", "RecommendationSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecommendationAPI", "RecommendationAPI\RecommendationAPI.csproj", "{B39070E2-2371-4977-BFA2-62A8D54CA82E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSync", "LiveSync\LiveSync.csproj", "{475C3E5B-6CD8-469E-A514-AE8A0DEACD83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B39070E2-2371-4977-BFA2-62A8D54CA82E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B39070E2-2371-4977-BFA2-62A8D54CA82E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B39070E2-2371-4977-BFA2-62A8D54CA82E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{475C3E5B-6CD8-469E-A514-AE8A0DEACD83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{475C3E5B-6CD8-469E-A514-AE8A0DEACD83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{475C3E5B-6CD8-469E-A514-AE8A0DEACD83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{475C3E5B-6CD8-469E-A514-AE8A0DEACD83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
